@@ -4,6 +4,11 @@ import { storage } from './storage'
 
 export const validLanguages: string[] = []
 
+export interface ILanguage {
+  key: string
+  name: string
+}
+
 export interface ILanguageCategoryDefinition {
   [key: string]: string | ((a?: any) => string)
 }
@@ -22,6 +27,8 @@ const definitionsByLanguage: {
 } = {}
 
 let loaded = false
+
+export const languages: ILanguage[] = []
 
 export const language = {
   set(languageKey: string) {
@@ -85,13 +92,22 @@ export const language = {
       })
   },
 
+  registerLangauge(lang: ILanguage) {
+    if (defined(definitionsByLanguage[lang.key])) {
+      throw new Error(`Language ${lang.key} was previously registered`)
+    }
+
+    languages.push(lang)
+    definitionsByLanguage[lang.key] = {}
+  },
+
   registerCategory(languageKey: string, category: string, definition: ILanguageCategoryDefinition) {
     if (definition.LANGUAGE !== languageKey) {
       throw new Error(`"export const LANGUAGE = '${languageKey}'" not found in language/${languageKey}/${category}.ts`)
     }
 
     if (!defined(definitionsByLanguage[languageKey])) {
-      definitionsByLanguage[languageKey] = {}
+      throw new Error(`Language ${languageKey} must first be registered with langauge.registerLangauge()`)
     }
 
     if (!defined(defaultLanguageKey)) {
