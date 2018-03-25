@@ -103,6 +103,7 @@ export const language = {
     }
 
     languages.push(lang)
+    validLanguages.push(lang.key)
   },
 
   registerCategory(languageKey: string, category: string, definition: ILanguageCategoryDefinition) {
@@ -113,8 +114,6 @@ export const language = {
     if (!defined(definitionsByLanguage[languageKey])) {
       definitionsByLanguage[languageKey] = {}
     }
-
-    validLanguages.push(languageKey)
 
     const currentLanguage = definitionsByLanguage[languageKey]
 
