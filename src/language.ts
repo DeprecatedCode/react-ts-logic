@@ -97,6 +97,11 @@ export const language = {
       definitionsByLanguage[lang.key] = {}
     }
 
+    if (!defined(defaultLanguageKey)) {
+      defaultLanguageKey = lang.key
+      activeLanguageKey = lang.key
+    }
+
     languages.push(lang)
   },
 
@@ -107,11 +112,6 @@ export const language = {
 
     if (!defined(definitionsByLanguage[languageKey])) {
       definitionsByLanguage[languageKey] = {}
-    }
-
-    if (!defined(defaultLanguageKey)) {
-      defaultLanguageKey = languageKey
-      activeLanguageKey = languageKey
     }
 
     validLanguages.push(languageKey)
