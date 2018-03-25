@@ -92,7 +92,7 @@ export const language = {
       })
   },
 
-  registerLangauge(lang: ILanguage) {
+  registerLanguage(lang: ILanguage) {
     if (defined(definitionsByLanguage[lang.key])) {
       throw new Error(`Language ${lang.key} was previously registered`)
     }
@@ -107,7 +107,7 @@ export const language = {
     }
 
     if (!defined(definitionsByLanguage[languageKey])) {
-      throw new Error(`Language ${languageKey} must first be registered with langauge.registerLangauge()`)
+      throw new Error(`Language ${languageKey} must first be registered with language.registerLanguage()`)
     }
 
     if (!defined(defaultLanguageKey)) {
