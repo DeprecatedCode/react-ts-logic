@@ -1,6 +1,6 @@
 {
   "name": "react-ts-logic",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Typescript Logic for Arrays, Functions, Events, and more. Building blocks for your React application.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
